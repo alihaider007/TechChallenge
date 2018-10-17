@@ -12,9 +12,13 @@ namespace TechChallenge.Controllers
     public class FibonacciController : ControllerBase
     {
         [HttpGet]
-        public int Get(int n)
+        public IActionResult Get(int n)
         {
-            var arr = new int[n + 1];
+            if(n > 92 || n < -92)
+            {
+                return StatusCode(400);
+            }
+            var arr = new long[n + 1];
 
             arr[0] = 0;
             arr[1] = 1;
@@ -26,7 +30,7 @@ namespace TechChallenge.Controllers
 
             var nNumber = arr[n];
 
-            return nNumber;
+            return Content(nNumber.ToString());
         }
     }
 }

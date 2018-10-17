@@ -26,7 +26,7 @@ namespace TechChallenge.Controllers
 
             var val = numbers.Distinct().Count();
 
-            if (a <= 0 || b <= 0 || c <= 0)
+            if (!IsTriangle(a,b,c))
             {
                 return Enum.GetName(typeof(TriangleType), TriangleType.Error);
             }
@@ -46,6 +46,28 @@ namespace TechChallenge.Controllers
             {
                 return Enum.GetName(typeof(TriangleType), TriangleType.Error);
             }
+        }
+
+        public bool IsTriangle(int a, int b, int c)
+        {
+            if (a <= 0 || b <= 0 || c <= 0)
+            {
+                return false;
+            }
+            else if((a + b) <= c)
+            {
+                return false;
+            }
+            else if ((b + a) <= a)
+            {
+                return false;
+            }
+            else if ((a + c) <= b)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
